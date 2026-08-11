@@ -12,7 +12,7 @@ module.exports = {
   output: {
     filename: 'bundle.[contenthash].js', // Имя файла с хешем для сброса кеша браузера
     path: path.resolve(__dirname, 'dist'),
-    publicPath: './', // Путь для ассетов внутри HTML
+    publicPath: '/', // Путь для ассетов внутри HTML
     assetModuleFilename: 'assets/[name][ext]' // Сохранять картинки в папку assets/
   },
 
