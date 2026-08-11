@@ -1,0 +1,42 @@
+{
+  "name": "credit-card-validator",
+  "version": "1.0.0",
+  "scripts": {
+  "dev": "webpack serve --mode development",
+  "start": "webpack serve --mode development",
+  "build": "webpack --mode production",
+  "test": "jest --coverage",
+  "e2e": "node e2e/server.js & sleep 2 && jest e2e/e2e.test.js"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@babel/preset-env": "^7.29.7",
+    "@babel/preset-react": "^7.23.3",
+    "@svgr/webpack": "^8.1.0",
+    "autoprefixer": "^10.5.4",
+    "babel-jest": "^29.7.0",
+    "babel-loader": "^10.1.1",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.8.1",
+    "eslint": "^8.55.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.6.8",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "mini-css-extract-plugin": "^2.10.2",
+    "postcss": "^8.5.26",
+    "postcss-loader": "^7.3.3",
+    "prettier": "^3.1.1",
+    "puppeteer": "^21.6.1",
+    "style-loader": "^3.3.3",
+    "terser-webpack-plugin": "^5.3.9",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  }
+}
