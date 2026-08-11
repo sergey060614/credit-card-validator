@@ -1,0 +1,47 @@
+name: CI / Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Шаг 1: Получаем исходный код из репозитория
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Шаг 2: Устанавливаем нужную версию Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm' # Ускоряет установку зависимостей при повторных запусках
+
+      # Шаг 3: Устанавливаем зависимости (package.json)
+      - name: Install dependencies
+        run: npm ci
+
+      # Шаг 4: Прогоняем юнит-тесты (Jest)
+      # Если тесты упадут, деплой не произойдет
+      - name: Run tests
+        run: npm test -- --silent 
+
+      # Шаг 5: Собираем проект с помощью Webpack
+      - name: Build project
+        run: npm run build
+
+      # Шаг 6: Загружаем готовую папку dist как артефакт (для отладки)
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+      # Шаг 7: Публикуем сайт на GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
