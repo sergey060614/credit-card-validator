@@ -8,24 +8,34 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
-    # --- ПРАВИЛЬНОЕ МЕСТО ДЛЯ PERMISSIONS ---
     permissions:
       contents: read
       pages: write
       id-token: write
 
     steps:
-      # Каждый шаг начинается с дефиса (-) и ОТСТУПА!
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js with Cache
+      - name: Setup Node.js 
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
+          cache: 'npm' 
+
+      - name: Cache NPM dependencies
+        uses: actions/cache@v4
+        id: npm-cache
+        with:
+          path: |
+            **/node_modules
+            ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
 
       - name: Install dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: Run tests
@@ -39,7 +49,6 @@ jobs:
         with:
           path: ./dist
 
-      # Шаг деплоя тоже должен начинаться с дефиса
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
