@@ -23,7 +23,8 @@ describe("Credit Card Validator form", () => {
     });
 
     browser = await puppeteer.launch({
-      headless: true // Для CI лучше использовать без GUI
+      headless: true, // Для CI лучше использовать без GUI
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
     page = await browser.newPage();
   });
