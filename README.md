@@ -1,4 +1,4 @@
-# Credit Card Validator 
+# Credit Card Validator
 
 [![Build Status](https://github.com/sergey060614/credit-card-validator/actions/workflows/ci.yml/badge.svg)](https://github.com/sergey060614/credit-card-validator/actions)
 
