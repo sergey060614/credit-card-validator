@@ -36,6 +36,7 @@ describe("Credit Card Validator form", () => {
 
   test("должен определить Visa по валидному номеру и показать зеленую галочку", async () => {
     await page.goto(baseUrl);
+await page.waitForLoadState('networkidle');
 
     const inputSelector = ".cc-input";
     const buttonSelector = ".cc-btn";

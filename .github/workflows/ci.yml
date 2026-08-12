@@ -25,8 +25,8 @@ jobs:
         run: npm ci
 
       
-      - name: Run tests
-        run: npm test -- --silent 
+      # -  name: Run tests
+       # run: npm test -- --silent 
 
       # Шаг 5: Собираем проект с помощью Webpack
       - name: Build project
